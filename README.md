@@ -8,8 +8,8 @@ CueBilt is a program that can take TSV-formatted cue sheet and build a skeleton 
 **https://tbsounddesigns.com**
 
 
-### Buy me a coffee?
-**This project is made with love from NYC to all designers who use QLab.** You are free to use the software or the source code as you see fit. If you appreciate this work and want to support it, **please consider buying Tyler a decaf mocha.** :) **https://buymeacoffee.com/tbsounddesigns**
+### Buy me a coffee? ☕️
+**This project is made with love from NYC to all designers who use QLab.** You are free to use the software or the source code as you see fit. If you appreciate this work and want to support it, **please consider buying Tyler a mocha.** ❤️ **https://buymeacoffee.com/tbsounddesigns**
 
 ## How to export your spreadsheet as a TSV
 ### Google Sheets
