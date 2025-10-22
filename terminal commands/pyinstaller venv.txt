@@ -1,0 +1,3 @@
+cd /Users/tylerberg/pyinstallvenv
+
+source bin/activate
