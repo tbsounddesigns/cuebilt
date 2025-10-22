@@ -11,6 +11,16 @@ CueBilt is a program that can take TSV-formatted cue sheet and build a skeleton 
 ### Buy me a coffee?
 **This project is made with love from NYC to all designers who use QLab.** You are free to use the software or the source code as you see fit. If you appreciate this work and want to support it, **please consider buying Tyler a decaf mocha.** :) **https://buymeacoffee.com/tbsounddesigns**
 
+## How to export your spreadsheet as a TSV
+### Google Sheets
+File > Download > Tab separated values (.tsv)
+
+### Numbers (Apple Office)
+File > Export to > TSV...
+
+### Microsoft Excel
+1. File > Save As... > .txt
+2. Change the extension .txt to .tsv in your file browser.
 
 ## How to use CueBilt
 1. Download the dmg file under the "Releases" section.
