@@ -15,15 +15,15 @@ CueBilt is a program that can take TSV-formatted cue sheet and build a skeleton 
 ## How to use CueBilt
 1. Download the dmg file under the "Releases" section.
 2. Open the dmg and copy CueBilt into your "Applications" folder.
-3. Open CueBilt. **(You may need to give CueBilt privacy permissions to run on your computer. See "Privacy Fix" below!!)**
+3. Open CueBilt. **(You may need to give CueBilt privacy permissions to run on your computer. See "Privacy & Security Fix" below!!)**
 4. Select which version of QLab you're using, then click "Open QLab" or "New Workspace". (You may need to allow CueBilt to access certain permissions and functions on your computer so that it can control QLab and find your TSV files properly.)
 5. Browse your filesystem and find your TSV file.
 6. Use either the arrows or type in the letter of the columns you wish to transfer data from the TSV to QLab.
 7. Click "Run."
 8. MAGIC!
 
-## Privacy Fix!!
-_**CueBilt may not open immediately, as your computer might suspect it of malware (I promise, it's not.) To fix this, go to System Settings > Privacy, and scroll down until you see the app name and "Open Anyway." Click this button, enter your password, and it will open.**_
+## Privacy & Security Fix!!
+_**CueBilt may not open immediately, as your computer might suspect it of malware (I promise, it's not.) To fix this, go to System Settings > Privacy & Security, and scroll down until you see the app name and "Open Anyway." Click this button, enter your password, and it will open.**_
 
 ## Other Notes
 1. When CueBilt reads your TSV file, it automatically assumes that Row 1 (index 0) is a HEADER row, and will start with Row 2 (index 1). If you believe this should not be the case, submit an ISSUE or PULL REQUEST.
