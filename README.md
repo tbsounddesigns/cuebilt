@@ -6,7 +6,7 @@ CueBilt is a program that can take TSV-formatted cue sheet and build a skeleton 
 
 **[Check out my website/portfolio!](https://tbsounddesigns.com)**
 
-### [<img width="218" height="60" alt="violet-button" src="https://github.com/user-attachments/assets/25e4b252-c797-443f-ab2b-cbd8a480f3a8" />](https://buymeacoffee.com/tbsounddesigns)
+### [<img width="218" height="60" alt="violet-button" src="https://github.com/user-attachments/assets/25e4b252-c797-443f-ab2b-cbd8a480f3a8" target="_blank"/>](https://buymeacoffee.com/tbsounddesigns)
 
 **This project is made with love from NYC to all designers who use QLab.** You are free to use the software or the source code as you see fit. If you appreciate this work and want to support it, **[please consider buying Tyler a mocha.](https://buymeacoffee.com/tbsounddesigns)** ❤️
 
