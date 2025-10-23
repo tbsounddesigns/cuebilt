@@ -49,8 +49,8 @@ app = BUNDLE(
     icon='cuebilt.icns',
     bundle_identifier='com.tbsounddesigns.cuebilt',
     info_plist= {
-        'CFBundleShortVersionString': '1.0.0',  # Your app version
-        'CFBundleVersion': '1.0.0',             # Build version (can be same as short version)
+        'CFBundleShortVersionString': '1.1.0',  # Your app version
+        'CFBundleVersion': '1.1.0',             # Build version (can be same as short version)
         'NSHumanReadableCopyright': '© 2025 Tyler A. Berg (tbsounddesigns.com)', # Optional: Copyright info
     }
 )

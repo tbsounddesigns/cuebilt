@@ -1,4 +1,0 @@
-cd /Volumes/BERG-1TB/Projects/CueBilt/CueBilt-app/dmg/dmg-contents
-
-#####CHANGE VERSION NUMBER#####
-hdiutil create -volname "CueBilt" -srcfolder "./" -ov -format UDZO "cuebilt_1.0.0.dmg"

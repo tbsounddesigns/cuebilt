@@ -1,4 +1,4 @@
-('/Volumes/BERG-1TB/Projects/CueBilt/CueBilt-app/build/CueBilt/PYZ-00.pyz',
+('/Volumes/BERG-1TB/Projects/CueBilt/cuebilt/build/CueBilt/PYZ-00.pyz',
  [('__future__',
    '/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/__future__.py',
    'PYMODULE'),

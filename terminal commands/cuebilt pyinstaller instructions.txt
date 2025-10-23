@@ -1,1 +1,0 @@
-pyinstaller --windowed --name "CueBilt" --icon "cuebilt.icns" --add-data "./scripts:./scripts"  --osx-bundle-identifier "com.tbsounddesigns.cuebilt" main.py

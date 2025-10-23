@@ -66,7 +66,7 @@ class fileBrowser(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.fileBrowserframe = ttk.LabelFrame(self, text="Select '.tsv' file:")
+        self.fileBrowserframe = ttk.LabelFrame(self, text="Select '.tsv' or '.txt' file:")
         self.fileBrowserframe.pack(fill="x", expand=True, side=tk.LEFT, padx=10, pady=10)
 
         self.path_label = ttk.Label(self.fileBrowserframe, text="No file selected", wraplength=150)
@@ -79,8 +79,11 @@ class fileBrowser(ttk.Frame):
         filepath = filedialog.askopenfilename(
             title="Select a .tsv file",
             defaultextension=".tsv",
-            filetypes=(("Tab Separated Values", "*.tsv"),
-                       ("All filetypes", "*.*"))
+            filetypes=(
+                ("Tab Separated Values", "*.tsv"),
+                ("TXT Tab Separated", "*.txt"),
+                ("All filetypes", "*.*")
+                )
         )
         if filepath:
             self.path_label.config(text=filepath)
@@ -92,7 +95,12 @@ class qlabOpts(ttk.Frame):
         self.QLabOptsFrame = ttk.Labelframe(self, text="Select QLab Version:")
         self.QLabOptsFrame.pack(padx=10, pady=10, fill="x", expand=True)
 
-        qlab_versions = ['QLab 3', 'QLab 4','QLab 5']
+        qlab_versions = [
+            'QLab 3', 
+            'QLab 4',
+            'QLab 5'
+            ]
+        
         self.QVers = tk.StringVar(value='QLab 5')
         for index in range(len(qlab_versions)):
             self.qlabradioButtons = ttk.Radiobutton(self.QLabOptsFrame, text=qlab_versions[index], variable=self.QVers, value=qlab_versions[index], takefocus=0)
@@ -114,7 +122,12 @@ class chooseCols(ttk.Frame):
         self.colInputFrame.columnconfigure(1, weight=1)
         self.colInputFrame.columnconfigure(2, weight=1)
 
-        cueSheetCols = ['Q Number','Q Name','Notes']
+        cueSheetCols = [
+            'Q Number',
+            'Q Name',
+            'Notes'
+            ]
+        
         cueSheetAlpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         cueShtCols = tk.IntVar()
 
@@ -147,7 +160,6 @@ class transportOpts(ttk.Frame):
         self.fileBrowser_frame = fileBrowser_frame
         self.chooseCols_frame = chooseCols_frame
 
-
         self.runButton = ttk.Button(
             self, 
             text="Run", 
@@ -162,16 +174,28 @@ class transportOpts(ttk.Frame):
         qlab_version = self.QLabVersion_frame.QVers.get()
         filepath = self.fileBrowser_frame.path_label.cget("text")
 
-        call_handler_in_file('./scripts/cuebiltMain.scpt', 'startQLab', col1, col2, col3, qlab_version, filepath)
-        print("Hello!")
-        print(col1)
-        print(col2)
-        print(col3)
-        print(qlab_version)
-        print(filepath)
+        call_handler_in_file(
+            './scripts/cuebiltMain.scpt', 
+            'startQLab', 
+            col1, 
+            col2, 
+            col3, 
+            qlab_version, 
+            filepath
+            )
+        # print("Hello!")
+        # print(col1)
+        # print(col2)
+        # print(col3)
+        # print(qlab_version)
+        # print(filepath)
 
     def run_qlab_test(self):
-        call_handler_in_file('./scripts/cuebiltMain.scpt', 'startQLabtest', 5)
+        call_handler_in_file(
+            './scripts/cuebiltMain.scpt', 
+            'startQLabtest', 
+            5
+            )
 
 if __name__ == "__main__":
     main()
