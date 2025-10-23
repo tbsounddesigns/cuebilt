@@ -2,14 +2,13 @@
 
 # CueBilt
 
-CueBilt is a program that can take TSV-formatted cue sheet and build a skeleton cue list in QLab. Designers can build their cue sheets, download them as a TSV file, import them, and watch QLab magically make a group cue for each cue in their sheet. This takes the hassle and time out of the first steps to building a QLab workspace. Watch the demo here: https://youtu.be/CbJnxZp8ooE
+CueBilt is a program that can take TSV-formatted cue sheet and build a skeleton cue list in QLab. Designers can build their cue sheets, download them as a TSV file, import them, and watch QLab magically make a group cue for each cue in their sheet. This takes the hassle and time out of the first steps to building a QLab workspace. **[Watch the demo here.](https://youtu.be/CbJnxZp8ooE)**
 
-### Check out my website/portfolio!
-**https://tbsounddesigns.com**
+**[Check out my website/portfolio!](https://tbsounddesigns.com)**
 
+### [<img width="218" height="60" alt="violet-button" src="https://github.com/user-attachments/assets/25e4b252-c797-443f-ab2b-cbd8a480f3a8" />](https://buymeacoffee.com/tbsounddesigns)
 
-### Buy me a coffee? ☕️
-**This project is made with love from NYC to all designers who use QLab.** You are free to use the software or the source code as you see fit. If you appreciate this work and want to support it, **please consider buying Tyler a mocha.** ❤️ **https://buymeacoffee.com/tbsounddesigns**
+**This project is made with love from NYC to all designers who use QLab.** You are free to use the software or the source code as you see fit. If you appreciate this work and want to support it, **[please consider buying Tyler a mocha.](https://buymeacoffee.com/tbsounddesigns)** ❤️
 
 ## How to export your spreadsheet as a TSV
 ### Google Sheets
