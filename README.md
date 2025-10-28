@@ -1,4 +1,4 @@
-<img width="64" height="64" alt="cuebilt" src="https://github.com/user-attachments/assets/b08d2126-f727-4706-b3e0-bf62df4cb70c" />
+<img width="64" height="64" alt="cuebilt" src="https://github.com/user-attachments/assets/b08d2126-f727-4706-b3e0-bf62df4cb70c"/>
 
 # CueBilt
 
@@ -19,7 +19,6 @@ CueBilt is a program that can take TSV-formatted cue sheet and build a skeleton 
 [Other Notes](#other-notes)<br>
 [Disclaimer](#disclaimer)
 
-
 ## How to export your spreadsheet as a TSV
 ### Google Sheets
 File > Download > Tab separated values (.tsv)
@@ -30,6 +29,7 @@ File > Export to > TSV...
 ### Microsoft Excel
 1. File > Save As... > .txt
 2. Change the extension .txt to .tsv in your file browser.
+3. NOTE: CueBilt 1.2.0 now supports .txt files in tab-separated format, so step 2 can be skipped, if desired.
 
 ## How to Install CueBilt
 1. Download the dmg file under the [Releases](https://github.com/tbsounddesigns/cuebilt/releases) section.
