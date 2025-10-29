@@ -1,5 +1,5 @@
-on reset()
-	if application id "com.figure53.QLab.3" is running then
+on reset(qversion)
+	if qversion = "QLab 3" then
 		tell application id "com.figure53.QLab.3"
 			activate
 			tell front workspace
@@ -11,7 +11,7 @@ on reset()
 				end if
 			end tell
 		end tell
-	else if application id "com.figure53.QLab.4" is running then
+	else if qversion = "QLab 4" then
 		tell application id "com.figure53.QLab.4"
 			activate
 			tell front workspace
@@ -23,7 +23,7 @@ on reset()
 				end if
 			end tell
 		end tell
-	else if application id "com.figure53.QLab.5" is running then
+	else if qversion = "QLab 5" then
 		tell application id "com.figure53.QLab.5"
 			activate
 			tell front workspace
@@ -38,4 +38,4 @@ on reset()
 	end if
 end reset
 
-reset()
+--reset()

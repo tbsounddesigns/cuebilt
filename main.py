@@ -13,9 +13,7 @@ def main():
     app.mainloop()
 
 def call_handler_in_file(script_path, handler_name, *args):
-
     python_script_dir = Path(__file__).parent
-
     absolute_path = (python_script_dir / script_path).resolve()
 
     if args:
@@ -40,9 +38,11 @@ class Application(tk.Tk):
         super().__init__()
         self.title("CueBilt")
 
-        self.geometry("")
-        
-        self.update_idletasks()
+        ### QLAB VERSION VARIABLE ###
+        self.QVers = tk.StringVar(value='QLab 5')
+
+        ### CONFIGURE APP ###
+        self.withdraw()
 
         self.columnconfigure(0, weight=1)
 
@@ -62,6 +62,27 @@ class Application(tk.Tk):
         self.transportOpts_frame.grid(row=5, column=0, padx=10, pady=10)
 
         self.focus()
+        self.update_idletasks()
+
+        # Set window size
+        window_width = self.winfo_reqwidth()
+        window_height = self.winfo_reqheight()
+
+        # Get screen dimensions
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        # Calculate position coordinates
+        center_x = int((screen_width - window_width) / 2)
+        center_y = int((screen_height - window_height) / 2)
+
+        # Set the position and size of the window
+        self.geometry(f'+{center_x}+{center_y}')     
+        self.deiconify()
+
+        # self.geometry("")
+
+
 
 class fileBrowser(ttk.Frame):
     def __init__(self, parent):
@@ -102,15 +123,15 @@ class qlabOpts(ttk.Frame):
             'QLab 5'
             ]
         
-        self.QVers = tk.StringVar(value='QLab 5')
+        ### self.QVers = tk.StringVar(value='QLab 5') ### NOW LIVES IN MAIN APP CLASS
         for index in range(len(qlab_versions)):
-            self.qlabradioButtons = ttk.Radiobutton(self.QLabOptsFrame, text=qlab_versions[index], variable=self.QVers, value=qlab_versions[index], takefocus=0)
+            self.qlabradioButtons = ttk.Radiobutton(self.QLabOptsFrame, text=qlab_versions[index], variable=parent.QVers, value=qlab_versions[index], takefocus=0)
             self.qlabradioButtons.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
 
         self.QLabCmmds_frame = ttk.Frame(self)
         self.QLabCmmds_frame.pack(fill="x", expand=True, side=tk.TOP)
-        self.qcommdbutton1 = ttk.Button(self.QLabCmmds_frame, text="Open QLab", command=lambda: call_handler_in_file('./scripts/openQLab.scpt', 'openQLab', self.QVers.get())).pack(side=tk.LEFT, expand=True)
-        self.qcommdbutton2 = ttk.Button(self.QLabCmmds_frame, text="New Workspace", command=lambda: call_handler_in_file('./scripts/openQLab.scpt', 'newQLabWorkspace', self.QVers.get())).pack(side=tk.LEFT, expand=True)
+        self.qcommdbutton1 = ttk.Button(self.QLabCmmds_frame, text="Open QLab", command=lambda: call_handler_in_file('./scripts/openQLab.scpt', 'openQLab', parent.QVers.get())).pack(side=tk.LEFT, expand=True)
+        self.qcommdbutton2 = ttk.Button(self.QLabCmmds_frame, text="New Workspace", command=lambda: call_handler_in_file('./scripts/openQLab.scpt', 'newQLabWorkspace', parent.QVers.get())).pack(side=tk.LEFT, expand=True)
 
 class chooseCols(ttk.Frame):
     def __init__(self, parent):
@@ -123,7 +144,7 @@ class chooseCols(ttk.Frame):
         self.colInputFrame.columnconfigure(1, weight=1)
         self.colInputFrame.columnconfigure(2, weight=1)
 
-        cueSheetCols = [
+        cue_sheet_cols = [
             'Q Number',
             'Q Name',
             'Notes'
@@ -132,17 +153,17 @@ class chooseCols(ttk.Frame):
         cueSheetAlpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         cueShtCols = tk.IntVar()
 
-        self.qlabel1 = ttk.Label(self.colInputFrame, text=cueSheetCols[0])
+        self.qlabel1 = ttk.Label(self.colInputFrame, text=cue_sheet_cols[0])
         self.qlabel1.grid(row=0, column=0, padx=5, sticky="nsew")
         self.colSpin1 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=5)
         self.colSpin1.grid(row=1, column=0, padx=5, sticky="nsew")
 
-        self.qlabel2 = ttk.Label(self.colInputFrame, text=cueSheetCols[1])
+        self.qlabel2 = ttk.Label(self.colInputFrame, text=cue_sheet_cols[1])
         self.qlabel2.grid(row=0, column=1, padx=5, sticky="nsew")
         self.colSpin2 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=5)
         self.colSpin2.grid(row=1, column=1, padx=5, sticky="nsew")
 
-        self.qlabel3 = ttk.Label(self.colInputFrame, text=cueSheetCols[2])
+        self.qlabel3 = ttk.Label(self.colInputFrame, text=cue_sheet_cols[2])
         self.qlabel3.grid(row=0, column=2, padx=5, sticky="nsew")
         self.colSpin3 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=5)
         self.colSpin3.grid(row=1, column=2, padx=5, sticky="nsew")
@@ -151,7 +172,7 @@ class auxOptions(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.clearwkspcButton = ttk.Button(self, text="Clear Workspace", command=lambda: call_handler_in_file('./scripts/resetQLabWorkspace.scpt', "reset")).pack(side=tk.TOP, expand=True)
+        self.clearwkspcButton = ttk.Button(self, text="Clear Workspace", command=lambda: call_handler_in_file('./scripts/resetQLabWorkspace.scpt', 'reset', parent.QVers.get())).pack(side=tk.TOP, expand=True)
 
 class transportOpts(ttk.Frame):
     def __init__(self, parent, QLabVersion_frame, fileBrowser_frame, chooseCols_frame):
@@ -160,6 +181,7 @@ class transportOpts(ttk.Frame):
         self.QLabVersion_frame = QLabVersion_frame
         self.fileBrowser_frame = fileBrowser_frame
         self.chooseCols_frame = chooseCols_frame
+        self.parent = parent
 
         self.runButton = ttk.Button(
             self, 
@@ -172,7 +194,8 @@ class transportOpts(ttk.Frame):
         col1 = self.chooseCols_frame.colSpin1.get()
         col2 = self.chooseCols_frame.colSpin2.get()
         col3 = self.chooseCols_frame.colSpin3.get()
-        qlab_version = self.QLabVersion_frame.QVers.get()
+        # qlab_version = self.QLabVersion_frame.QVers.get()
+        qlab_version = self.parent.QVers.get()
         filepath = self.fileBrowser_frame.path_label.cget("text")
 
         call_handler_in_file(
@@ -184,6 +207,7 @@ class transportOpts(ttk.Frame):
             qlab_version, 
             filepath
             )
+        
         # print("Hello!")
         # print(col1)
         # print(col2)
