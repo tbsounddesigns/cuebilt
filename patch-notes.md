@@ -1,9 +1,9 @@
 ### v1.2.1 Release Notes
 #### CHANGED
-- Window now centers on startup
+- Window now centers on screen on startup
 
 #### FIXED
-- Program will still run, even if some column entries are left blank. 
+- Program will now still run, even if some column entries are left blank. If a column entry is left blank, the corresponding attribute of the group cue will also now be left blank, allowing users to choose which columns they want to transfer successfully.
 
 ------
 
