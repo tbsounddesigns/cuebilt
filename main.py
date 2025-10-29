@@ -13,9 +13,7 @@ def main():
     app.mainloop()
 
 def call_handler_in_file(script_path, handler_name, *args):
-
     python_script_dir = Path(__file__).parent
-
     absolute_path = (python_script_dir / script_path).resolve()
 
     if args:
@@ -40,9 +38,7 @@ class Application(tk.Tk):
         super().__init__()
         self.title("CueBilt")
 
-        self.geometry("")
-        
-        self.update_idletasks()
+        self.withdraw()
 
         self.columnconfigure(0, weight=1)
 
@@ -62,6 +58,27 @@ class Application(tk.Tk):
         self.transportOpts_frame.grid(row=5, column=0, padx=10, pady=10)
 
         self.focus()
+
+        self.update_idletasks()
+        # self.geometry("")
+
+        # Set window size
+        window_width = self.winfo_reqwidth()
+        window_height = self.winfo_reqheight()
+
+        # Get screen dimensions
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        # Calculate position coordinates
+        center_x = int((screen_width - window_width) / 2)
+        center_y = int((screen_height - window_height) / 2)
+
+        # Set the position and size of the window
+        self.geometry(f'+{center_x}+{center_y}')     
+
+        self.deiconify()
+
 
 class fileBrowser(ttk.Frame):
     def __init__(self, parent):
@@ -184,6 +201,7 @@ class transportOpts(ttk.Frame):
             qlab_version, 
             filepath
             )
+        
         # print("Hello!")
         # print(col1)
         # print(col2)
