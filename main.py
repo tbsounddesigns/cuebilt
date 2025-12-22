@@ -38,8 +38,9 @@ class Application(tk.Tk):
         super().__init__()
         self.title("CueBilt")
 
-        ### QLAB VERSION VARIABLE ###
+        ### VARIABLES ###
         self.QVers = tk.StringVar(value='QLab 5')
+        self.pgNumOpt = tk.BooleanVar(master=self, value=False)
 
         ### CONFIGURE APP ###
         self.withdraw()
@@ -53,13 +54,13 @@ class Application(tk.Tk):
         self.fileBrowser_frame.grid(row=2, column=0, sticky="nsew", padx=10)
 
         self.chooseCols_frame = chooseCols(self)
-        self.chooseCols_frame.grid(row=3, column=0, sticky="nsew", padx=10, pady=10)
+        self.chooseCols_frame.grid(row=3, column=0, sticky="nsew", padx=10)
 
         auxOptions_frame = auxOptions(self)
-        auxOptions_frame.grid(row=4, column=0, padx=10, pady=10)
+        auxOptions_frame.grid(row=4, column=0, padx=10)
 
         self.transportOpts_frame = transportOpts(self, self.QLabVersion_frame, self.fileBrowser_frame, self.chooseCols_frame)
-        self.transportOpts_frame.grid(row=5, column=0, padx=10, pady=10)
+        self.transportOpts_frame.grid(row=5, column=0, padx=10, pady=(0,20))
 
         self.focus()
         self.update_idletasks()
@@ -137,17 +138,21 @@ class chooseCols(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.colInputFrame = ttk.Labelframe(self, text="Choose the column letters you'd like to pull from the spreadsheet:")
+        self.colInputFrame = ttk.Labelframe(self, text="Choose column letters from cue sheet.\nIf left blank, parameter will remain blank in QLab.")
+
         self.colInputFrame.pack(padx=10, pady=10, fill="x", expand=True)
 
         self.colInputFrame.columnconfigure(0, weight=1)
         self.colInputFrame.columnconfigure(1, weight=1)
         self.colInputFrame.columnconfigure(2, weight=1)
+        self.colInputFrame.columnconfigure(3, weight=1)
+        
 
         cue_sheet_cols = [
             'Q Number',
             'Q Name',
-            'Notes'
+            'Notes',
+            'Page #'
             ]
         
         cueSheetAlpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
@@ -155,24 +160,41 @@ class chooseCols(ttk.Frame):
 
         self.qlabel1 = ttk.Label(self.colInputFrame, text=cue_sheet_cols[0])
         self.qlabel1.grid(row=0, column=0, padx=5, sticky="nsew")
-        self.colSpin1 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=5)
+        self.colSpin1 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=6)
         self.colSpin1.grid(row=1, column=0, padx=5, sticky="nsew")
 
         self.qlabel2 = ttk.Label(self.colInputFrame, text=cue_sheet_cols[1])
         self.qlabel2.grid(row=0, column=1, padx=5, sticky="nsew")
-        self.colSpin2 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=5)
+        self.colSpin2 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=6)
         self.colSpin2.grid(row=1, column=1, padx=5, sticky="nsew")
 
         self.qlabel3 = ttk.Label(self.colInputFrame, text=cue_sheet_cols[2])
         self.qlabel3.grid(row=0, column=2, padx=5, sticky="nsew")
-        self.colSpin3 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=5)
+        self.colSpin3 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=6)
         self.colSpin3.grid(row=1, column=2, padx=5, sticky="nsew")
+
+        self.qlabel4 = ttk.Label(self.colInputFrame, text=cue_sheet_cols[3])
+        self.qlabel4.grid(row=0, column=3, padx=5, sticky="nsew")
+        self.colSpin4 = ttk.Spinbox(self.colInputFrame, values=cueSheetAlpha, width=6)
+        self.colSpin4.grid(row=1, column=3, padx=5, sticky="nsew")
 
 class auxOptions(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.clearwkspcButton = ttk.Button(self, text="Clear Workspace", command=lambda: call_handler_in_file('./scripts/resetQLabWorkspace.scpt', 'reset', parent.QVers.get())).pack(side=tk.TOP, expand=True)
+        # self.label_text = tk.StringVar()
+
+        # def update_label():
+        #     if parent.pgNumOpt.get() == True:
+        #         self.label_text.set("Ex: (p. 56) - Door Knock")
+        #     else:
+        #         self.label_text.set("Unchecked: page numbers will be included in Q Notes")
+
+        self.pgcheck = ttk.Checkbutton(self, text="Include page numbers in Q Name", variable=parent.pgNumOpt).pack(expand=True)
+        self.pgcheckLabel1 = ttk.Label(self, text="Ex: (p. 56) - Door Knock", font=('TkDefaultFont', 9)).pack(expand=True)
+        self.pgcheckLabel2 = ttk.Label(self, text="If unchecked, page numbers will be included in Q Notes", font=('TkDefaultFont', 9)).pack(expand=True)
+
+
 
 class transportOpts(ttk.Frame):
     def __init__(self, parent, QLabVersion_frame, fileBrowser_frame, chooseCols_frame):
@@ -183,10 +205,13 @@ class transportOpts(ttk.Frame):
         self.chooseCols_frame = chooseCols_frame
         self.parent = parent
 
+        self.clearwkspcButton = ttk.Button(self, text="Clear Workspace", command=lambda: call_handler_in_file('./scripts/resetQLabWorkspace.scpt', 'reset', parent.QVers.get())).pack(side=tk.TOP, expand=True, pady=20)
+
         self.runButton = ttk.Button(
             self, 
             text="Run", 
-            command=self.run_qlab
+            command=self.run_qlab,
+            default="active"
             )
         self.runButton.pack(side=tk.TOP, expand=True)
 
@@ -194,7 +219,8 @@ class transportOpts(ttk.Frame):
         col1 = self.chooseCols_frame.colSpin1.get()
         col2 = self.chooseCols_frame.colSpin2.get()
         col3 = self.chooseCols_frame.colSpin3.get()
-        # qlab_version = self.QLabVersion_frame.QVers.get()
+        col4 = self.chooseCols_frame.colSpin4.get()
+        pgsTog = self.parent.pgNumOpt.get()
         qlab_version = self.parent.QVers.get()
         filepath = self.fileBrowser_frame.path_label.cget("text")
 
@@ -203,17 +229,21 @@ class transportOpts(ttk.Frame):
             'startQLab', 
             col1, 
             col2, 
-            col3, 
+            col3,
+            col4,
+            pgsTog, 
             qlab_version, 
             filepath
             )
         
-        # print("Hello!")
-        # print(col1)
-        # print(col2)
-        # print(col3)
-        # print(qlab_version)
-        # print(filepath)
+        print("PYTHON MONITOR IS ON. ARGS PASSED:")
+        print("QName Column = " + col1)
+        print("QNum = " + col2)
+        print("QNotes = " + col3)
+        print("QPages = " + col4)
+        print("Include Pages = " + str(pgsTog))
+        print("Version = " + qlab_version)
+        print("Filepath = " + filepath)
 
     def run_qlab_test(self):
         call_handler_in_file(
