@@ -79,7 +79,6 @@ on controlQLab5()
 			try
 				set newCuePgs to text item (offset of pgsCol in alphabet) of paragraph rowCount of theFileContents
 			end try
-
 			set newCueNum to newCueNum as string
 			try
 				make type "group"
@@ -114,6 +113,7 @@ on controlQLab4()
 	set newCueNum to ""
 	set newCueName to ""
 	set newCueNotes to ""
+	set newCuePgs to ""
 	tell application id "com.figure53.qlab.4" to tell front workspace
 		activate
 		repeat with rowCount from 2 to numRows
@@ -125,6 +125,9 @@ on controlQLab4()
 			end try
 			try
 				set newCueNotes to text item (offset of notesCol in alphabet) of paragraph rowCount of theFileContents
+			end try
+			try
+				set newCuePgs to text item (offset of pgsCol in alphabet) of paragraph rowCount of theFileContents
 			end try
 			set newCueNum to newCueNum as string
 			try
@@ -140,7 +143,17 @@ on controlQLab4()
 				try
 					set notes of newCue to newCueNotes
 				end try
-				collapse newCue
+				try
+					if newCuePgs is "" then
+						--do nothing
+					else
+						if pgsTog is "True" then
+								set q name of newCue to ("(p. " & newCuePgs & ") - " & newCueName)
+						else
+								set notes of newCue to ("(p. " & newCuePgs & ") - " & newCueNotes)
+						end if
+					end if		
+				end try
 			end try
 		end repeat
 	end tell
@@ -150,6 +163,7 @@ on controlQLab3()
 	set newCueNum to ""
 	set newCueName to ""
 	set newCueNotes to ""
+	set newCuePgs to ""
 	tell application id "com.figure53.qlab.3" to tell front workspace
 		activate
 		repeat with rowCount from 2 to numRows
@@ -161,6 +175,9 @@ on controlQLab3()
 			end try
 			try
 				set newCueNotes to text item (offset of notesCol in alphabet) of paragraph rowCount of theFileContents
+			end try
+			try
+				set newCuePgs to text item (offset of pgsCol in alphabet) of paragraph rowCount of theFileContents
 			end try
 			set newCueNum to newCueNum as string
 			try
@@ -176,14 +193,21 @@ on controlQLab3()
 				try
 					set notes of newCue to newCueNotes
 				end try
-				--collapse newCue
+				try
+					if newCuePgs is "" then
+						--do nothing
+					else
+						if pgsTog is "True" then
+								set q name of newCue to ("(p. " & newCuePgs & ") - " & newCueName)
+						else
+								set notes of newCue to ("(p. " & newCuePgs & ") - " & newCueNotes)
+						end if
+					end if		
+				end try
 			end try
 		end repeat
 	end tell
 end controlQLab3
-
-
-
 
 
 (* TEST FUNCTIONS *)

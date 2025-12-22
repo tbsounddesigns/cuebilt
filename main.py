@@ -236,14 +236,14 @@ class transportOpts(ttk.Frame):
             filepath
             )
         
-        print("PYTHON MONITOR IS ON. ARGS PASSED:")
-        print("QName Column = " + col1)
-        print("QNum = " + col2)
-        print("QNotes = " + col3)
-        print("QPages = " + col4)
-        print("Include Pages = " + str(pgsTog))
-        print("Version = " + qlab_version)
-        print("Filepath = " + filepath)
+        # print("PYTHON MONITOR IS ON. ARGS PASSED:")
+        # print("QName Column = " + col1)
+        # print("QNum = " + col2)
+        # print("QNotes = " + col3)
+        # print("QPages = " + col4)
+        # print("Include Pages = " + str(pgsTog))
+        # print("Version = " + qlab_version)
+        # print("Filepath = " + filepath)
 
     def run_qlab_test(self):
         call_handler_in_file(
